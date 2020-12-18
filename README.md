@@ -4,24 +4,17 @@ In Kubernetes environments usually we use Terraform or any other IaC tool for pr
 
 We are already familiarized with the benefits and advantages of using Terraform as IaC tool, by writing our infrastructure using Terraform we **prevent configuration drifts** managing the lifecycle of our infrastructure using declarative configuration files. We have gains with **flexibility** being able to manage resources in multiple cloud providers and **collaboration** using the terraform registry that allows us to reuse public templates contributed by the community or have our own private templates, however we will take another approach for this project. Terraform will be used to managed both, the infrastructure and the Kubernetes Lifecycle. 
 
-Using Terraform, provision AWS VPC inside region/AZs of your choice. VPC should include a
-minimum amount of network components required for your solution to work (subnets, routes,
-security groups, ngw, igw, etc…). You should provision web app servers behind publicly
-accessible LB, web apps should not be publicly accessible and not have public IPs, but should
-be able to connect to the Internet. Web apps should serve static web pages with random text.
-Database server should run PostgreSQL version > 11.3. Web apps and database should be on
-separate subnets. Database should have firewall rules allowing queries from web apps only.
 ## Architecture
 
 As we can see from the image below, the infrastructure was provisioned in two different VPCs, the EKS VPC and the RDS VPC (Default), ideally you should not share the EKS Cluster VPC with other resources as [recommended by AWS[(https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)], in addition to the eventual security issues, the L-IPAM daemon responsible for creating network interfaces and attaching the network interfaces to Amazon EC2 instances, assigns secondary IP addresses to network interfaces, and maintains a warm pool of IP addresses on each node for assignment to Kubernetes pods when they are scheduled, by sharing the same subnet with other AWS services you eventually can run out of IPs. 
 
 The resources were configured as below:
 
-*[2 X VPCs](vpc.tf)
-*[1 X EKS Cluster](cluster.tf)
-*[1 X Worker Node Group with 3 nodes](cluster.tf)
-*[3 X Security Groups (EKS Cluster, Worker Nodes and RDS)](security-groups.tf)
-*[Kubernetes resources (1 Deployment and 1 Service Type LoadBalancer)](kubernetes.tf)
+* [2 X VPCs](vpc.tf)
+* [1 X EKS Cluster](cluster.tf)
+* [1 X Worker Node Group with 3 nodes](cluster.tf)
+* [3 X Security Groups (EKS Cluster, Worker Nodes and RDS)](security-groups.tf)
+* [Kubernetes resources (1 Deployment and 1 Service Type LoadBalancer)](kubernetes.tf)
 
 ![arqhitecture](https://github.com/tavaresrodrigo/terraform-3T/blob/master/jmiro.jpg)
 ## Requirements
