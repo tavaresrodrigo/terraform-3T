@@ -1,0 +1,10 @@
+.extra_margin{
+    margin-top: 30px;
+  }
+  
+.lead {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
