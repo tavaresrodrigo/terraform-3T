@@ -2,7 +2,7 @@
 
 ## Architecture
 
-![arqhitecture]: https://github.com/tavaresrodrigo/terraform-3T/blob/master/jmiro.jpg
+[arqhitecture]: https://github.com/tavaresrodrigo/terraform-3T/blob/master/jmiro.jpg
 ## Requirements
 
 Make sure you install and configure all the tools required before the infrastructure and Kubernetes deploy.
@@ -17,7 +17,7 @@ It's expected that you have the **AWS CLI**, the **AWS IAM Authenticator** and *
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 * [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
 * [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) 
-* wget ([required for the EKS module](https://github.com/terraform-aws-modules/terraform-aws-eks/issues/829))
+* [wget](https://stackoverflow.com/questions/33886917/how-to-install-wget-in-macos) [required for the EKS module](https://github.com/terraform-aws-modules/terraform-aws-eks/issues/829))
 
 ### Docker container
 
@@ -67,3 +67,18 @@ As explained above, you will be managing the kubernetes resources using Terrafor
 ```
 $ aws eks --region eu-west-1 update-kubeconfig --name eks-web
 ```
+
+If you run a kubectl get pods you must be able to see the 3 replicas that we have configured in our [kubernetes.tf](kubernetes.tf):
+
+```
+kubectl get pods 
+NAME                                READY   STATUS    RESTARTS   AGE
+deployment-nginx-5fccf4655f-2dxcz   1/1     Running   0          3h2m
+deployment-nginx-5fccf4655f-5qcbh   1/1     Running   0          3h2m
+deployment-nginx-5fccf4655f-ghmz6   1/1     Running   0          3h2m
+```
+## Checking the application
+
+
+## Destroying the environment
+
