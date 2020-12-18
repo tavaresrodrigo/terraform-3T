@@ -2,12 +2,14 @@
 
 ## Architecture
 
-! [arquitecture](jmiro.jpg)
+![arqhitecture]: https://github.com/tavaresrodrigo/terraform-3T/blob/master/jmiro.jpg
 ## Requirements
+
+Make sure you install and configure all the tools required before the infrastructure and Kubernetes deploy.
 
 ### Terraform
 
-https://learn.hashicorp.com/tutorials/terraform/install-cli
+* [Terraform] https://learn.hashicorp.com/tutorials/terraform/install-cli
 
 ### Kubernetes
 It's expected that you have the **AWS CLI**, the **AWS IAM Authenticator** and **kubectl** already installed in your workstation, but don't worry if you don't have it yet, you can easily install and configure them following the links below. 
@@ -51,21 +53,17 @@ Have a look at the [kubernetes.tf](/kubernetes.tf) file for more details about t
 ### Cloning this repository
 
 ```
-git clone 
+$ git clone https://github.com/tavaresrodrigo/terraform-3T
+```
+### 
+```
+$ terraform init 
+$ terraform apply
 ```
 
+You will be presented to the summary of resources that will be provisioned, the whole process can take up to 15 minutes. 
 
-I assume you already have kubectl and aws config installed, in case you don't have it yet, go ahead 
-terraform init
-
-kubernetes default CIDR 172 and 10 
-
-Configure kubectl 
-
-
-terraform init 
-
-## Managing Kubernetes Resources via Terraform
-
-
-aws eks --region eu-west-1 update-kubeconfig --name eks-web
+As explained above, you will be managing the kubernetes resources using Terraform, however you might want to see your pods, deployments and services using kubectl, for that you just need to create a kubeconfig profile as below:
+```
+$ aws eks --region eu-west-1 update-kubeconfig --name eks-web
+```
