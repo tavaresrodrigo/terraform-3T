@@ -2,7 +2,7 @@
 
 ## Architecture
 
-[arqhitecture]: https://github.com/tavaresrodrigo/terraform-3T/blob/master/jmiro.jpg
+![arqhitecture](https://github.com/tavaresrodrigo/terraform-3T/blob/master/jmiro.jpg)
 ## Requirements
 
 Make sure you install and configure all the tools required before the infrastructure and Kubernetes deploy.
@@ -79,6 +79,12 @@ deployment-nginx-5fccf4655f-ghmz6   1/1     Running   0          3h2m
 ```
 ## Checking the application
 
+You must be able access the application from the ELB DNS Name that in the terraform output or from your AWS Console. 
 
 ## Destroying the environment
 
+Now you can run a terraform destroy to clean up your account and prevent you to expend extra-money on this environment. 
+
+```
+$terraform destroy 
+```
