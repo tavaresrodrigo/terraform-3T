@@ -6,7 +6,9 @@ For this project we will take a different approach, Terraform will be used to ma
 
 ## Architecture
 
-As we can see from the image below, the infrastructure was provisioned in two different VPCs, the EKS VPC and the RDS VPC (Default), ideally you should not share the EKS Cluster VPC with other resources as [recommended by AWS[(https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)], in addition to the eventual security issues, the L-IPAM daemon responsible for creating network interfaces and attaching the network interfaces to Amazon EC2 instances, assigns secondary IP addresses to network interfaces, and maintains a warm pool of IP addresses on each node for assignment to Kubernetes pods when they are scheduled, by sharing the same subnet with other AWS services you eventually can run out of IPs. 
+As we can see from the image below, the infrastructure was provisioned in two different VPCs, the EKS VPC and the RDS VPC (Default), ideally you should not share the EKS Cluster VPC with other resources as [recommended by AWS](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html).
+
+In addition to the eventual security issues that you might face by sharing the cluster VPC, the L-IPAM daemon assigns secondary IP addresses to network interfaces, and maintains a warm pool of IP addresses on each node for assignment to Kubernetes pods when they are scheduled, by sharing the same subnet with other AWS services you eventually will run out of IPs depending on the CIDR of the subnets.
 
 The resources were configured as below:
 
