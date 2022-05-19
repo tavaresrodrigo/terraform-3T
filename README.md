@@ -1,8 +1,6 @@
 # EKS WEB cluster with Terraform
 
-In Kubernetes Public Cloud environments we usually have Terraform or any other IaC tool to create the Infrastructure components and services and K8s related tools like kubectl, helm or any other mechanism to communicate with the Kubernetes API, which usually demands more administration and management effort.
-
-For this project we will take a different approach, Terraform will be used to manage the Cloud infrastructure and the Kubernetes life cycles. 
+Manage the Cloud infrastructure and the Kubernetes life cycles with Terraform.
 
 ## Architecture
 
